@@ -7,27 +7,27 @@ export const createTransaction = async (req, res) => {
   const account = await Account.findOne({ accountNumber });
 
   if (!account) {
-    res.status(404).json({ message: "Account not found" });
+    res.status(404).json({ message: "Account not found." });
     return;
   }
 
   if (account.status === "INACTIVE") {
-    res.status(403).json({ message: "Account is inactive" });
+    res.status(403).json({ message: "Account is inactive." });
     return;
   }
 
   if (type === "DEBIT" && !account.allowDebit) {
-    res.status(403).json({ message: "Debit transactions not allowed" });
+    res.status(403).json({ message: "Debit transactions not allowed." });
     return;
   }
 
   if (type === "CREDIT" && !account.allowCredit) {
-    res.status(403).json({ message: "Credit transactions not allowed" });
+    res.status(403).json({ message: "Credit transactions not allowed." });
     return;
   }
 
   if (type === "DEBIT" && amount > account.dailyWithdrawalLimit) {
-    res.status(403).json({ message: "Withdrawal amount exceeds daily limit" });
+    res.status(403).json({ message: "Withdrawal amount exceeds daily limit." });
     return;
   }
 
@@ -49,7 +49,7 @@ export const getBalance = async (req, res) => {
   const account = await Account.findOne({ accountNumber });
 
   if (!account) {
-    res.status(404).json({ message: "Account not found" });
+    res.status(404).json({ message: "Account not found." });
     return;
   }
 

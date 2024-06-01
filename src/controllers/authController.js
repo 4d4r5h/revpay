@@ -6,7 +6,7 @@ dotenv.config();
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: "30d",
+    expiresIn: "30m",
   });
 };
 
@@ -15,7 +15,7 @@ export const registerBusiness = async (req, res) => {
   const businessExists = await Business.findOne({ username });
 
   if (businessExists) {
-    res.status(400).json({ message: "Business already exists" });
+    res.status(400).json({ message: "Business already exists." });
     return;
   }
 
@@ -28,7 +28,7 @@ export const registerBusiness = async (req, res) => {
       token: generateToken(business._id),
     });
   } else {
-    res.status(400).json({ message: "Invalid business data" });
+    res.status(400).json({ message: "Invalid business data." });
   }
 };
 
@@ -43,6 +43,6 @@ export const loginBusiness = async (req, res) => {
       token: generateToken(business._id),
     });
   } else {
-    res.status(401).json({ message: "Invalid username or password" });
+    res.status(401).json({ message: "Invalid username or password." });
   }
 };

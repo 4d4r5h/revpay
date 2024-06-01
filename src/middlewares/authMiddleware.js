@@ -16,10 +16,10 @@ const authMiddleware = async (req, res, next) => {
       req.business = await Business.findById(decoded.id).select("-password");
       next();
     } catch (error) {
-      res.status(401).json({ message: "Not authorized, token failed" });
+      res.status(401).json({ message: "Not authorized, token failed." });
     }
   } else {
-    res.status(401).json({ message: "Not authorized, no token" });
+    res.status(401).json({ message: "Not authorized, no token." });
   }
 };
 

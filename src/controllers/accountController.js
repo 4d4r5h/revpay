@@ -6,7 +6,7 @@ export const createAccount = async (req, res) => {
   const accountExists = await Account.findOne({ accountNumber });
 
   if (accountExists) {
-    res.status(400).json({ message: "Account already exists" });
+    res.status(400).json({ message: "Account already exists." });
     return;
   }
 
@@ -19,7 +19,7 @@ export const createAccount = async (req, res) => {
   if (account) {
     res.status(201).json(account);
   } else {
-    res.status(400).json({ message: "Invalid account data" });
+    res.status(400).json({ message: "Invalid account data." });
   }
 };
 
